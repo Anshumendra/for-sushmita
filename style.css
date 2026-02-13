@@ -1,156 +1,74 @@
-*{margin:0;padding:0;box-sizing:border-box}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our First Valentine 💖</title>
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fff1f7,#ffe5b4);
-  transition:1s;
-  overflow-y:auto;
-}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
 
-.hidden{display:none}
+<body>
 
-/* 🔐 LOCK */
-#lock{
-  position:fixed;
-  inset:0;
-  background:#ffe5b4;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:20;
-}
+<!-- 🔐 LOCK -->
+<div id="lock">
+  <h2>Only for Sushmita 💛</h2>
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="unlock()">Enter</button>
+</div>
 
-#lock input{
-  padding:10px;
-  font-size:16px;
-  margin:10px;
-}
+<!-- 🎵 MUSIC -->
+<audio id="song">
+  <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
+</audio>
 
-/* 🌙 NIGHT MODE */
-body.night{
-  background:radial-gradient(circle at top,#1b2735,#090a0f);
-  color:white;
-}
+<!-- BACKGROUNDS -->
+<div id="dayAnim"></div>
+<div id="galaxy"></div>
+<div id="comets"></div>
+<div id="moon">Sushmita</div>
+<div id="fireworks"></div>
 
-/* PAGE */
-.page{
-  max-width:520px;
-  margin:auto;
-  padding:30px 20px 80px;
-  text-align:center;
-}
+<button id="nightToggle">🌙</button>
 
-h1{
-  font-family:'Playfair Display',serif;
-  font-size:34px;
-  color:#e76f51;
-}
+<div id="page" class="page hidden">
 
-.sub{
-  font-family:'Dancing Script',cursive;
-  font-size:22px;
-  color:#b56576;
-}
+  <h1>Sushmita 🌻</h1>
+  <p class="sub">Our First Valentine — 2026</p>
 
-.photos{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin:20px 0;
-}
+  <div class="photos">
+    <img src="assets/sushmita.jpg">
+    <img src="assets/anshumendra.jpg">
+  </div>
 
-.photos img{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  border:4px solid #f4a261;
-  object-fit:cover;
-}
+  <button id="startBtn">💛 Start Our Valentine</button>
 
-button{
-  padding:14px 28px;
-  border:none;
-  border-radius:30px;
-  background:#f4a261;
-  color:white;
-  margin:12px;
-  cursor:pointer;
-}
+  <div id="letter" class="letter"></div>
 
-#nightToggle{
-  position:fixed;
-  top:12px;
-  right:12px;
-  z-index:5;
-}
+  <div class="couple">
+    <img src="assets/couple.jpg">
+    <p>The day we lay in the park and forgot the world 🌿</p>
+  </div>
 
-/* LETTER */
-.letter{
-  font-family:'Dancing Script',cursive;
-  font-size:20px;
-  white-space:pre-wrap;
-  text-align:left;
-  margin-top:20px;
-}
+  <div class="valentine">
+    <h2>Will you be my Valentine, Sushmita? 💖</h2>
+    <div class="choices">
+      <button onclick="celebrate()">Always 💕</button>
+      <button onclick="celebrate()">Yes 🌻</button>
+    </div>
+    <span>— Forever yours, Anshumendra</span>
+  </div>
 
-/* COUPLE */
-.couple img{
-  width:100%;
-  border-radius:20px;
-  margin-top:30px;
-}
+</div>
 
-/* GALAXY STARS */
-#galaxy span{
-  position:fixed;
-  width:2px;
-  height:2px;
-  background:white;
-  border-radius:50%;
-  opacity:.8;
-}
+<div id="yesScreen">
+  <div>
+    💖 SHE SAID YES 💖<br><br>
+    <button onclick="closeYes()">Relive this moment 🌻</button>
+  </div>
+</div>
 
-/* COMET */
-.comet{
-  position:fixed;
-  width:120px;
-  height:2px;
-  background:linear-gradient(90deg,white,transparent);
-  animation:shoot 2s linear infinite;
-}
-
-@keyframes shoot{
-  from{transform:translate(-200px,-200px)}
-  to{transform:translate(120vw,120vh)}
-}
-
-/* FIREWORK */
-.fire{
-  position:fixed;
-  width:8px;
-  height:8px;
-  background:gold;
-  border-radius:50%;
-  animation:explode 1s forwards;
-}
-
-@keyframes explode{
-  to{
-    transform:translate(var(--x),var(--y)) scale(0);
-    opacity:0;
-  }
-}
-
-/* YES SCREEN */
-#yesScreen{
-  position:fixed;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  font-size:46px;
-  background:rgba(0,0,0,.85);
-  color:#ffb703;
-  z-index:30;
-}
+<script src="script.js"></script>
+</body>
+</html>
