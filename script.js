@@ -1,7 +1,7 @@
-// ----- PASSWORD UNLOCK -----
+// ----- PASSWORD UNLOCK (updated to BeMyWifey) -----
 function unlock() {
   const pass = document.getElementById("pass").value.trim();
-  if (pass === "sushmita") {
+  if (pass === "BeMyWifey") {
     document.getElementById("lock").style.display = "none";
     document.getElementById("page").classList.remove("hidden");
     sessionStorage.setItem("unlocked", "true");
@@ -200,7 +200,7 @@ function createSunflowerPetals() {
   }
 }
 
-// Add second butterfly (since we can't have multiple ::after)
+// Add second butterfly
 function addSecondButterfly() {
   const butterfly = document.createElement('div');
   butterfly.className = 'butterfly2';
