@@ -13,28 +13,58 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* 🌸 Subtle floating hearts animation (background only) */
-body::before {
-  content: "❤️";
+/* 🦋 Subtle butterfly animation (background) */
+body::before,
+body::after {
+  content: "🦋";
   position: fixed;
-  top: -10%;
+  font-size: 2rem;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: -1;
+  animation: floatButterfly 18s infinite ease-in-out;
+}
+
+body::before {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+body::after {
+  bottom: 15%;
+  right: 8%;
+  animation-delay: -5s;
+  font-size: 2.5rem;
+}
+
+@keyframes floatButterfly {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(20px, -30px) rotate(5deg); }
+  50% { transform: translate(40px, 0) rotate(0deg); }
+  75% { transform: translate(20px, 30px) rotate(-5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Additional butterflies (using pseudo-elements on wrapper) */
+.butterfly-bg {
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  font-size: 24px;
-  color: rgba(255, 182, 193, 0.15);
-  text-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
-  animation: floatHearts 20s linear infinite;
   z-index: -1;
 }
 
-@keyframes floatHearts {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.3; }
-  90% { opacity: 0.2; }
-  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+.butterfly-bg span {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.15;
+  animation: floatButterfly var(--duration) infinite alternate;
 }
+
+/* We'll add a few via HTML (but it's okay to just use pseudo-elements for simplicity) */
 
 /* ---------- NIGHT MODE ---------- */
 body.night {
@@ -170,7 +200,7 @@ h1 {
   margin-bottom: 2rem;
 }
 
-/* PROFILE PHOTOS */
+/* PROFILE PHOTOS (two circles) */
 .photos {
   display: flex;
   justify-content: center;
@@ -238,50 +268,6 @@ h1 {
   margin-top: 15px;
   font-style: italic;
   color: #6b4f4f;
-}
-
-/* OUR MOMENTS GALLERY */
-.moments {
-  margin-top: 60px;
-  text-align: center;
-}
-
-.moments h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: #e76f51;
-  margin-bottom: 20px;
-}
-
-.gallery {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 15px 5px;
-  scrollbar-width: thin;
-  scrollbar-color: #f4a261 #ffe5b4;
-}
-
-.gallery img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 15px;
-  border: 3px solid #f4a261;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-
-.gallery img:hover {
-  transform: scale(1.03);
-}
-
-.gallery::-webkit-scrollbar {
-  height: 8px;
-}
-.gallery::-webkit-scrollbar-thumb {
-  background: #f4a261;
-  border-radius: 20px;
 }
 
 /* VALENTINE QUESTION */
@@ -381,6 +367,5 @@ h1 {
   .valentine h2 { font-size: 1.8rem; }
   .photos img { width: 100px; height: 100px; }
   .letter { font-size: 1.3rem; padding: 20px; }
-  .gallery img { width: 150px; height: 120px; }
   #nightToggle { top: 10px; right: 10px; padding: 8px 12px; }
 }
