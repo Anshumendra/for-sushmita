@@ -11,18 +11,26 @@
 
 <body>
 
-<audio id="song" preload="auto">
+<!-- 🔐 LOCK SCREEN -->
+<div id="lock">
+  <h2>Only for Sushmita 💛</h2>
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="unlock()">Enter</button>
+</div>
+
+<!-- 🎵 AUDIO -->
+<audio id="song">
   <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Galaxy -->
+<!-- 🌌 BACKGROUND LAYERS -->
 <div id="galaxy"></div>
 <div id="comets"></div>
 <div id="fireworks"></div>
 
 <button id="nightToggle">🌙</button>
 
-<div class="page">
+<div id="page" class="page hidden">
 
   <h1>Sushmita 🌻</h1>
   <p class="sub">Our First Valentine — 2026</p>
