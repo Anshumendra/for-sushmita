@@ -3,41 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Letter to Mary’s lap ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<title>Happy Valentine 💛</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<audio id="song">
+  <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
+</audio>
+
 <div id="sunflower-layer"></div>
 
 <main class="card">
-  <h1>Sushmita 🌻</h1>
+  <h1 class="name">Sushmita 🌻</h1>
 
-  <section class="photos">
+  <div class="photos">
     <img src="assets/sushmita.jpg" alt="Sushmita">
     <img src="assets/anshumendra.jpg" alt="Anshumendra">
-  </section>
+  </div>
 
-  <h2 class="letter-title">A Letter to Mary’s lap ❤️</h2>
+  <h2 class="title">A Letter to Mary’s lap ❤️</h2>
+
+  <button id="startBtn">💛 Read My Valentine Letter</button>
 
   <div id="letter" class="letter"></div>
 
-  <div class="music">
-    <p>🎶 Down in the Valley — The Head and The Heart</p>
-    <iframe
-      style="border-radius:12px"
-      src="https://open.spotify.com/embed/track/4bHsxqR3GMrXTxEPLuK5i8"
-      width="100%" height="80"
-      frameborder="0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-    </iframe>
+  <!-- Couple Photo -->
+  <div class="couple hidden" id="couple">
+    <img src="assets/couple.jpg" alt="Us together">
+    <p class="caption">
+      Somewhere between laughter and silence, we found us 🌿
+    </p>
   </div>
 
-  <footer>— Always yours, <strong>Anshumendra</strong></footer>
+  <!-- Valentine Question -->
+  <div class="valentine hidden" id="valentine">
+    <h2>Will you be my Valentine, Sushmita? 💖</h2>
+    <p>— Always yours, Anshumendra</p>
+  </div>
 </main>
 
 <script src="script.js"></script>
 </body>
 </html>
+
+
