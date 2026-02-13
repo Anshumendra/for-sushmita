@@ -1,117 +1,72 @@
-/* 🔐 PASSWORD */
+// PASSWORD
 function unlock(){
   if(document.getElementById("pass").value === "sushmita"){
-    localStorage.setItem("unlocked","yes");
     document.getElementById("lock").style.display="none";
     document.getElementById("page").classList.remove("hidden");
   }
 }
 
-if(localStorage.getItem("unlocked")==="yes"){
-  document.getElementById("lock").style.display="none";
-  document.getElementById("page").classList.remove("hidden");
+// NIGHT MODE
+document.getElementById("nightToggle").onclick=()=>{
+  document.body.classList.toggle("night");
+};
+
+// FIREFLIES
+const fire = document.getElementById("fireflies");
+for(let i=0;i<30;i++){
+  const f=document.createElement("span");
+  f.style.left=Math.random()*100+"%";
+  f.style.animationDuration=(8+Math.random()*10)+"s";
+  fire.appendChild(f);
 }
 
-/* ELEMENTS */
-const song = document.getElementById("song");
-const startBtn = document.getElementById("startBtn");
-const letterBox = document.getElementById("letter");
-const nightBtn = document.getElementById("nightToggle");
-const galaxy = document.getElementById("galaxy");
-const comets = document.getElementById("comets");
-const fireworks = document.getElementById("fireworks");
-const dayAnim = document.getElementById("dayAnim");
-
-/* LETTER */
-const text = `Sushmita ❤️
+// LETTER TEXT
+const en = `Sushmita ❤️
 
 There is a world beyond those mountains,
-where the river is the river and the river is the river.
+where love is the only work people do.
 
-There are houses between the mountains and the sky is below,
-and fireflies glow like earrings.
+One day,
+I hope we walk there together.
 
-Sushmita, don’t ask about that world.
-There, love is the only work people do.
+Because for me,
+the meaning of life is you.`;
 
-No one ages there.
-The sun never hides.
-The moon never feels distant.
+const hi = `सुश्मिता ❤️
 
-One day, when this world feels heavy,
-I hope we walk into that world together.
+एक दुनिया है पहाड़ों के उस पार,
+जहाँ प्रेम ही जीवन है।
 
-Because Sushmita —
-there, the meaning of life will be love.`;
+एक दिन,
+मैं चाहता हूँ हम साथ चलें वहाँ।
 
-let i=0;
+क्योंकि मेरे लिए,
+जीवन का अर्थ तुम हो।`;
 
-/* START */
-startBtn.onclick=()=>{
-  startBtn.style.display="none";
-  song.volume=0.7;
+let text=en, i=0;
+const letter=document.getElementById("letter");
+const song=document.getElementById("song");
+
+document.getElementById("startBtn").onclick=()=>{
   song.play();
   type();
 };
 
 function type(){
   if(i<text.length){
-    letterBox.textContent+=text.charAt(i++);
+    letter.textContent+=text.charAt(i++);
     setTimeout(type,40);
   }
 }
 
-/* DAY ANIMATION */
-function startDay(){
-  dayAnim.innerHTML="";
-  ["🌸","💖","🌻"].forEach(()=>{});
-  for(let i=0;i<25;i++){
-    const s=document.createElement("span");
-    s.textContent=["🌸","💖","🌻"][Math.floor(Math.random()*3)];
-    s.style.left=Math.random()*100+"%";
-    s.style.animationDuration=(10+Math.random()*10)+"s";
-    dayAnim.appendChild(s);
-  }
-}
-startDay();
-
-/* NIGHT MODE */
-nightBtn.onclick=()=>{
-  document.body.classList.toggle("night");
-  if(document.body.classList.contains("night")){
-    dayAnim.innerHTML="";
-    galaxy.innerHTML="";
-    for(let i=0;i<100;i++){
-      const s=document.createElement("span");
-      s.style.left=Math.random()*100+"%";
-      s.style.top=Math.random()*100+"%";
-      galaxy.appendChild(s);
-    }
-    const c=document.createElement("div");
-    c.className="comet";
-    comets.appendChild(c);
-  }else{
-    galaxy.innerHTML="";
-    comets.innerHTML="";
-    startDay();
-  }
+// LANGUAGE
+document.getElementById("langToggle").onclick=()=>{
+  letter.textContent="";
+  i=0;
+  text = text===en ? hi : en;
 };
 
-/* CELEBRATION */
-function celebrate(){
-  for(let i=0;i<45;i++){
-    const f=document.createElement("div");
-    f.className="fire";
-    f.style.left=(40+Math.random()*20)+"%";
-    f.style.top=(40+Math.random()*20)+"%";
-    f.style.setProperty("--x",(Math.random()*600-300)+"px");
-    f.style.setProperty("--y",(Math.random()*600-300)+"px");
-    fireworks.appendChild(f);
-    setTimeout(()=>f.remove(),1200);
-  }
-  document.getElementById("yesScreen").style.display="flex";
-}
-
-function closeYes(){
-  document.getElementById("yesScreen").style.display="none";
+// KISS
+function kiss(){
+  document.getElementById("kiss").style.display="flex";
 }
