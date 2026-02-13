@@ -1,77 +1,75 @@
+/* 🔐 PASSWORD */
+function unlock(){
+  if(document.getElementById("pass").value === "sushmita"){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("page").classList.remove("hidden");
+  }
+}
+
+/* ELEMENTS */
 const song = document.getElementById("song");
 const startBtn = document.getElementById("startBtn");
 const letterBox = document.getElementById("letter");
+const nightBtn = document.getElementById("nightToggle");
 const galaxy = document.getElementById("galaxy");
 const comets = document.getElementById("comets");
-const nightBtn = document.getElementById("nightToggle");
 const fireworks = document.getElementById("fireworks");
 
-/* LETTER TEXT */
+/* 💌 LETTER (FULL & SAFE) */
 const text = `Sushmita ❤️
 
-There is a world beyond those mountains,
-where the river is the river and the river is the river.
+There is a world beyond those mountains, where the river is the river and the river is the river.
+There are houses between the mountains and the sky is below, and fireflies glow like earrings.
 
-There no one is lonely.
-Love is the only work people do.
+Sushmita, don’t ask about that world.
+There, love is the only work people do.
 
-The seasons stay pink.
-The sky listens when someone hums a song.
-And time never rushes us.
+No one ages there.
+The sun never hides.
+The moon never feels distant.
 
-One day when this world feels heavy,
+One day, when this world feels heavy,
 I hope we walk into that world together.
 
 Because Sushmita —
 there, the meaning of life will be love.`;
 
-let i=0;
+let i = 0;
 
-/* START */
+/* ▶️ START (MUSIC GUARANTEED) */
 startBtn.onclick = ()=>{
   startBtn.style.display="none";
-  song.volume=0.7;
-  song.play();            // guaranteed play
+  song.volume = 0.7;
+  song.play();   // direct click = works
   type();
 };
 
-/* TYPE LETTER */
 function type(){
-  if(i<text.length){
-    letterBox.textContent+=text.charAt(i++);
+  if(i < text.length){
+    letterBox.textContent += text.charAt(i++);
     setTimeout(type,40);
   }
 }
 
-/* NIGHT MODE */
+/* 🌙 NIGHT MODE + GALAXY */
 nightBtn.onclick = ()=>{
   document.body.classList.toggle("night");
+
   if(document.body.classList.contains("night")){
-    createStars();
-    createComet();
+    galaxy.innerHTML="";
+    for(let i=0;i<120;i++){
+      const s=document.createElement("span");
+      s.style.left=Math.random()*100+"%";
+      s.style.top=Math.random()*100+"%";
+      galaxy.appendChild(s);
+    }
+    const c=document.createElement("div");
+    c.className="comet";
+    comets.appendChild(c);
   }
 };
 
-/* STARS */
-function createStars(){
-  galaxy.innerHTML="";
-  for(let i=0;i<100;i++){
-    const s=document.createElement("span");
-    s.style.width=s.style.height=Math.random()*2+1+"px";
-    s.style.left=Math.random()*100+"%";
-    s.style.top=Math.random()*100+"%";
-    galaxy.appendChild(s);
-  }
-}
-
-/* COMET */
-function createComet(){
-  const c=document.createElement("div");
-  c.className="comet";
-  comets.appendChild(c);
-}
-
-/* CELEBRATION */
+/* 🎆 CELEBRATION */
 function celebrate(){
   for(let i=0;i<120;i++){
     const f=document.createElement("div");
