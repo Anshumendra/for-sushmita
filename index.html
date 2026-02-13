@@ -10,6 +10,9 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- canvas-confetti for gentle celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 </head>
 <body>
 
@@ -18,6 +21,7 @@
     <h2>💛 Only for Sushmita</h2>
     <input id="pass" type="password" placeholder="Enter password">
     <button onclick="unlock()">Enter</button>
+    <p id="lock-error"></p>
   </div>
 
   <!-- 🎵 BACKGROUND MUSIC -->
@@ -25,14 +29,7 @@
     <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 🌤️ DAY / NIGHT BACKGROUND LAYERS -->
-  <div id="dayAnim"></div>
-  <div id="galaxy"></div>
-  <div id="comets"></div>
-  <div id="moon">Sushmita</div>
-  <div id="fireworks"></div>
-
-  <!-- 🌙 NIGHT MODE BUTTON -->
+  <!-- 🌙 NIGHT MODE BUTTON (optional, remove if not wanted) -->
   <button id="nightToggle">🌙</button>
 
   <!-- 🌻 MAIN PAGE -->
@@ -52,7 +49,7 @@
       <!-- START BUTTON -->
       <button id="startBtn">💛 Start Our Valentine</button>
 
-      <!-- LETTER -->
+      <!-- LETTER (will be filled by JavaScript) -->
       <div id="letter" class="letter"></div>
 
       <!-- COUPLE PHOTO -->
@@ -76,7 +73,7 @@
     </div>
   </div>
 
-  <!-- 💖 YES SCREEN -->
+  <!-- 💖 YES SCREEN (hidden until she says yes) -->
   <div id="yesScreen">
     <div>
       💖 SHE SAID YES 💖<br><br>
@@ -84,8 +81,7 @@
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- JavaScript -->
   <script src="script.js"></script>
-
 </body>
 </html>
