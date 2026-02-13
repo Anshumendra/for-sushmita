@@ -1,145 +1,184 @@
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#fff1f7,#ffe5b4);
-  transition:.4s;
-  overflow-y:auto;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body.night{
-  background:linear-gradient(135deg,#1b1b2f,#16213e);
-  color:#f5f5f5;
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fff1f7, #ffe5b4);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.hidden{display:none}
-
-#lock{
-  position:fixed;
-  inset:0;
-  background:#ffe5b4;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:10;
+/* ---------------- LOCK SCREEN ---------------- */
+#lock {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffe5b4, #fff1f7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-#lock input{
-  padding:10px;
-  margin:10px;
-  font-size:16px;
+#lock h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
 }
 
-.page{
-  max-width:520px;
-  margin:auto;
-  padding:30px 20px 80px;
-  text-align:center;
+#lock input {
+  padding: 10px 14px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  width: 220px;
 }
 
-h1{
-  font-family:'Playfair Display',serif;
-  color:#e76f51;
-  font-size:34px;
+#lock button {
+  padding: 10px 26px;
+  border-radius: 25px;
+  border: none;
+  background: #f4a261;
+  color: white;
+  cursor: pointer;
 }
 
-.sub{
-  font-family:'Dancing Script',cursive;
-  font-size:22px;
-  color:#b56576;
+/* ---------------- MAIN CONTAINER ---------------- */
+.page {
+  display: flex;
+  justify-content: center;
 }
 
-.photos{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin:20px 0;
+.container {
+  max-width: 720px;
+  width: 100%;
+  padding: 40px 20px 80px;
+  text-align: center;
 }
 
-.photos img{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid #f4a261;
+/* ---------------- HEADINGS ---------------- */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: #e76f51;
 }
 
-button{
-  padding:14px 28px;
-  border:none;
-  border-radius:30px;
-  background:#f4a261;
-  color:white;
-  margin:10px;
+.sub {
+  font-family: 'Dancing Script', cursive;
+  font-size: 24px;
+  margin-top: 6px;
+  color: #b56576;
 }
 
-#nightToggle,#langToggle{
-  position:fixed;
-  top:10px;
+/* ---------------- PHOTOS ---------------- */
+.photos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
 }
 
-#nightToggle{right:10px}
-#langToggle{left:10px}
-
-.letter{
-  font-family:'Dancing Script',cursive;
-  font-size:20px;
-  line-height:1.8;
-  white-space:pre-wrap;
-  text-align:left;
-  margin-top:20px;
+.photos img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #f4a261;
+  object-fit: cover;
 }
 
-.couple img{
-  width:100%;
-  border-radius:20px;
-  margin-top:30px;
+/* ---------------- START BUTTON ---------------- */
+#startBtn {
+  margin: 20px auto;
+  padding: 14px 36px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  background: #e76f51;
+  color: white;
+  cursor: pointer;
 }
 
-.valentine{
-  margin-top:40px;
-  font-family:'Playfair Display',serif;
-  font-size:28px;
-  color:#e63946;
+/* ---------------- LETTER ---------------- */
+.letter {
+  margin-top: 30px;
+  text-align: left;
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  line-height: 1.8;
+  white-space: pre-wrap;
 }
 
-.choices{
-  display:flex;
-  justify-content:center;
-  gap:15px;
+/* ---------------- COUPLE IMAGE ---------------- */
+.couple {
+  margin-top: 40px;
 }
 
-.yes{
-  background:#ff6b9d;
+.couple img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
-#fireflies span{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:yellow;
-  border-radius:50%;
-  animation:fly linear infinite;
-  opacity:.7;
+.couple p {
+  margin-top: 10px;
+  font-style: italic;
 }
 
-@keyframes fly{
-  from{transform:translateY(100vh)}
-  to{transform:translateY(-120vh)}
+/* ---------------- VALENTINE QUESTION ---------------- */
+.valentine {
+  margin-top: 40px;
 }
 
-#kiss{
-  position:fixed;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  font-size:80px;
-  animation:pop 1s forwards;
+.valentine h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
-@keyframes pop{
-  0%{transform:scale(0)}
-  100%{transform:scale(1)}
+.choices {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.choices button {
+  padding: 12px 26px;
+  border-radius: 25px;
+  border: none;
+  font-size: 16px;
+  background: #f4a261;
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------------- YES SCREEN ---------------- */
+#yesScreen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0,0,0,0.85);
+  color: #ffb703;
+  font-size: 42px;
+  z-index: 1000;
+}
+
+#yesScreen button {
+  margin-top: 20px;
+  padding: 12px 26px;
+  border-radius: 25px;
+  border: none;
+  background: #f4a261;
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 600px) {
+  h1 { font-size: 32px; }
+  .valentine h2 { font-size: 26px; }
 }
