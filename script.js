@@ -20,12 +20,63 @@ document.getElementById("nightToggle").addEventListener("click", () => {
   document.body.classList.toggle("night");
 });
 
-// ----- MUSIC & TYPING (song1) -----
+// ----- MUSIC PLAYER (robust) -----
 const song1 = document.getElementById("song1");
 const song2 = document.getElementById("song2");
-const letterDiv = document.getElementById("letter");
 const startBtn = document.getElementById("startBtn");
+const playSong2Btn = document.getElementById("playSong2");
+const letterDiv = document.getElementById("letter");
 
+// Optional: small status element (you can add this in HTML if desired)
+let musicStatus = document.createElement('div');
+musicStatus.id = 'music-status';
+musicStatus.style.margin = '10px auto';
+musicStatus.style.fontSize = '0.9rem';
+musicStatus.style.color = '#006994';
+musicStatus.style.display = 'none'; // hidden by default
+startBtn.parentNode.insertBefore(musicStatus, startBtn.nextSibling);
+
+function pauseAll() {
+  song1.pause();
+  song2.pause();
+}
+
+function playSong(audioElement, name) {
+  pauseAll();
+  audioElement.play()
+    .then(() => {
+      console.log(`Playing: ${name}`);
+      if (musicStatus) {
+        musicStatus.textContent = `🎵 Now playing: ${name}`;
+        musicStatus.style.display = 'block';
+      }
+    })
+    .catch(err => {
+      console.warn(`Failed to play ${name}:`, err);
+      if (musicStatus) {
+        musicStatus.textContent = `⚠️ Click again to play music (browser restriction)`;
+        musicStatus.style.display = 'block';
+      }
+    });
+}
+
+// Start button -> song1 (down in the valley)
+startBtn.addEventListener("click", () => {
+  playSong(song1, "Down in the Valley");
+  // Start typing effect if not already
+  if (!typingInterval) {
+    letterDiv.textContent = "";
+    charIndex = 0;
+    typingInterval = setInterval(typeLetter, 40);
+  }
+});
+
+// Special song button -> song2 (chandi jaisa rang)
+playSong2Btn.addEventListener("click", () => {
+  playSong(song2, "Chandi Jaisa Rang");
+});
+
+// ----- TYPING EFFECT -----
 const letterText = `Sushmita ❤️
 
 There is a world beyond those mountains,
@@ -50,24 +101,6 @@ function typeLetter() {
   }
 }
 
-startBtn.addEventListener("click", () => {
-  // Pause song2 if playing
-  if (!song2.paused) song2.pause();
-  song1.play().catch(e => console.log("Playback failed: ", e));
-  if (!typingInterval) {
-    letterDiv.textContent = "";
-    charIndex = 0;
-    typingInterval = setInterval(typeLetter, 40);
-  }
-});
-
-// ----- SECOND SONG BUTTON -----
-document.getElementById("playSong2").addEventListener("click", () => {
-  // Pause song1 if playing
-  if (!song1.paused) song1.pause();
-  song2.play().catch(e => console.log("Playback failed: ", e));
-});
-
 // ----- SUNFLOWER SECRET -----
 function toggleSecret() {
   document.getElementById("secretMessage").classList.toggle("show");
@@ -77,10 +110,8 @@ function toggleSecret() {
 function updateBirthdayCountdown() {
   const today = new Date();
   const currentYear = today.getFullYear();
-  // Birthday is 2nd August
-  let birthday = new Date(currentYear, 7, 2); // month is 0-indexed, so 7 = August
+  let birthday = new Date(currentYear, 7, 2); // August 2
   if (today > birthday) {
-    // If already passed this year, set for next year
     birthday = new Date(currentYear + 1, 7, 2);
   }
   const diffTime = birthday - today;
@@ -155,8 +186,11 @@ function createSunflowerPetals() {
   }
 }
 
-// Initialize on load
+// Initialize everything after DOM loads
 window.addEventListener('load', () => {
   createSunflowerPetals();
   updateBirthdayCountdown();
+  // Preload audio metadata (optional)
+  song1.load();
+  song2.load();
 });
