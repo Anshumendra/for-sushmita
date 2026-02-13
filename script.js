@@ -10,19 +10,19 @@ function unlock() {
   }
 }
 
-// Auto-unlock if already unlocked this session
 if (sessionStorage.getItem("unlocked") === "true") {
   document.getElementById("lock").style.display = "none";
   document.getElementById("page").classList.remove("hidden");
 }
 
 // ----- NIGHT MODE TOGGLE -----
-document.getElementById("nightToggle")?.addEventListener("click", () => {
+document.getElementById("nightToggle").addEventListener("click", () => {
   document.body.classList.toggle("night");
 });
 
-// ----- MUSIC & TYPING -----
-const song = document.getElementById("song");
+// ----- MUSIC & TYPING (song1) -----
+const song1 = document.getElementById("song1");
+const song2 = document.getElementById("song2");
 const letterDiv = document.getElementById("letter");
 const startBtn = document.getElementById("startBtn");
 
@@ -51,7 +51,9 @@ function typeLetter() {
 }
 
 startBtn.addEventListener("click", () => {
-  song.play().catch(e => console.log("Playback failed: ", e));
+  // Pause song2 if playing
+  if (!song2.paused) song2.pause();
+  song1.play().catch(e => console.log("Playback failed: ", e));
   if (!typingInterval) {
     letterDiv.textContent = "";
     charIndex = 0;
@@ -59,20 +61,38 @@ startBtn.addEventListener("click", () => {
   }
 });
 
-// ----- SUNFLOWER SECRET MESSAGE TOGGLE -----
+// ----- SECOND SONG BUTTON -----
+document.getElementById("playSong2").addEventListener("click", () => {
+  // Pause song1 if playing
+  if (!song1.paused) song1.pause();
+  song2.play().catch(e => console.log("Playback failed: ", e));
+});
+
+// ----- SUNFLOWER SECRET -----
 function toggleSecret() {
-  const secret = document.getElementById("secretMessage");
-  secret.classList.toggle("show");
+  document.getElementById("secretMessage").classList.toggle("show");
+}
+
+// ----- BIRTHDAY COUNTDOWN -----
+function updateBirthdayCountdown() {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  // Birthday is 2nd August
+  let birthday = new Date(currentYear, 7, 2); // month is 0-indexed, so 7 = August
+  if (today > birthday) {
+    // If already passed this year, set for next year
+    birthday = new Date(currentYear + 1, 7, 2);
+  }
+  const diffTime = birthday - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const message = `🎂 ${diffDays} days until your birthday (2 Aug)`;
+  document.getElementById("birthdayMessage").textContent = message;
 }
 
 // ----- CELEBRATE (firecracker confetti) -----
 function celebrate() {
-  // Show yes overlay
-  const yesScreen = document.getElementById("yesScreen");
-  yesScreen.style.display = "flex";
+  document.getElementById("yesScreen").style.display = "flex";
 
-  // ---- FIREWORKS / FIRECRACKER EFFECT ----
-  // First burst (center)
   confetti({
     particleCount: 150,
     spread: 80,
@@ -82,7 +102,6 @@ function celebrate() {
     ticks: 300
   });
 
-  // Second burst (left side)
   setTimeout(() => {
     confetti({
       particleCount: 100,
@@ -93,7 +112,6 @@ function celebrate() {
     });
   }, 150);
 
-  // Third burst (right side)
   setTimeout(() => {
     confetti({
       particleCount: 100,
@@ -104,7 +122,6 @@ function celebrate() {
     });
   }, 300);
 
-  // Fourth burst (top, like fireworks)
   setTimeout(() => {
     confetti({
       particleCount: 200,
@@ -120,16 +137,14 @@ function closeYes() {
   document.getElementById("yesScreen").style.display = "none";
 }
 
-// ----- CREATE FLOATING SUNFLOWER PETALS BACKGROUND -----
+// ----- CREATE FLOATING SUNFLOWER PETALS -----
 function createSunflowerPetals() {
   const bgDiv = document.createElement('div');
   bgDiv.className = 'flower-bg';
   document.body.appendChild(bgDiv);
-
-  // Create 12 floating sunflowers with random positions and delays
   for (let i = 0; i < 12; i++) {
     const span = document.createElement('span');
-    span.textContent = '🌻'; // or use a petal shape? emoji works
+    span.textContent = '🌻';
     span.style.left = Math.random() * 100 + '%';
     span.style.top = Math.random() * 100 + '%';
     span.style.animationDuration = (15 + Math.random() * 20) + 's';
@@ -140,5 +155,8 @@ function createSunflowerPetals() {
   }
 }
 
-// Initialize background on page load
-window.addEventListener('load', createSunflowerPetals);
+// Initialize on load
+window.addEventListener('load', () => {
+  createSunflowerPetals();
+  updateBirthdayCountdown();
+});
