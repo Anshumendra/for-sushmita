@@ -1,53 +1,39 @@
-/* ===============================
-   Floating Sunflowers & Hearts
-================================ */
-
+/* Floating elements */
 const layer = document.getElementById("sunflower-layer");
-const symbols = ["🌻", "💛", "💖", "🌻"];
+const symbols = ["🌻","💛","💖","🌻"];
 
-for (let i = 0; i < 36; i++) {
+for(let i=0;i<40;i++){
   const el = document.createElement("span");
-  el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-  el.style.left = Math.random() * 100 + "%";
-  el.style.animationDuration = (10 + Math.random() * 10) + "s";
+  el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left = Math.random()*100 + "%";
+  el.style.animationDuration = (10 + Math.random()*10) + "s";
   layer.appendChild(el);
 }
 
-/* ===============================
-   Letter Text (FULL)
-================================ */
-
+/* Letter text (SUSHMITA) */
 const text = `Sushmita ❤️
 
 There is a world beyond those mountains, where the river is the river and the river is the river.
-There are houses between the mountains and the sky is below, Mary must be hiding under your feet and fireflies will be twinkling like earrings.
+There are houses between the mountains and the sky is below, and I imagine you walking there, smiling.
 
-Sushmita don't ask about that world, there fireflies have taken the place of stars.
-People in that world have tied more threads of love than your sons, whose mention is still on the lips bubbling in the grave.
+Sushmita, don’t ask about that world — there fireflies have taken the place of stars.
+People there tie threads of love endlessly, and no one is ever lonely.
 
-No one is lonely in that world, there is no employment except love Sushmita ❤️
+No one ages there.
+The sun never hides, the moon never feels distant.
+The lamps burn even in strong winds, and boats move over mountains.
 
-Sushmita ❤️
-No one ages there, the sun never goes to hide and the moon never looks above your feet.
-The matter of that world is different, there the lamps burn in strong winds and the boat moves on the mountains.
+The seasons are pink there.
+Leaves never turn yellow.
+It rains when someone hums a song in love.
 
-Sushmita ❤️
-There the seasons are pink, the leaves of the trees never turn yellow.
-It rains there too Mary when someone hums a song in love.
+One day, when we grow tired of this world,
+I hope we’ll walk into that one together.
 
-The eagles, crows and vultures there don't eat meat, they bite the drops of dew.
-That land is so pure and clean that the souls coming out of the graves hug those who love them.
+Because Sushmita —
+there, the meaning of life will only be love.`;
 
-One day when we will get tired of this world, we will call the angels there.
-Sushmita, in that world everything said to you will be a promise and nothing will be incomplete for us.
-
-Sushmita,
-there the meaning of life will be love.`;
-
-/* ===============================
-   DOM Elements
-================================ */
-
+/* DOM */
 let i = 0;
 const letter = document.getElementById("letter");
 const song = document.getElementById("song");
@@ -55,67 +41,35 @@ const btn = document.getElementById("startBtn");
 const couple = document.getElementById("couple");
 const valentine = document.getElementById("valentine");
 
-/* ===============================
-   AUDIO FIX (IMPORTANT)
-================================ */
-
-// Unlock audio on first real click
-function unlockAudio() {
-  song.play().then(() => {
-    song.pause();
-    song.currentTime = 0;
-  }).catch(() => {});
-}
-
-// Fade-in music smoothly
-function fadeInMusic() {
+/* AUDIO UNLOCK */
+function startMusic(){
   song.volume = 0;
-  song.play().catch(() => {});
-  let v = 0;
-  const fade = setInterval(() => {
-    v += 0.02;
-    song.volume = Math.min(v, 0.6);
-    if (v >= 0.6) clearInterval(fade);
-  }, 120);
+  song.play().then(()=>{
+    let v = 0;
+    const fade = setInterval(()=>{
+      v += 0.02;
+      song.volume = Math.min(v,0.6);
+      if(v >= 0.6) clearInterval(fade);
+    },120);
+  }).catch(()=>{});
 }
 
-/* ===============================
-   Typing Effect
-================================ */
-
-function type() {
-  if (i < text.length) {
+/* TYPE LETTER */
+function type(){
+  if(i < text.length){
     letter.textContent += text.charAt(i);
     i++;
-
-    let delay = 35;
-    if (text.charAt(i - 1) === "\n") delay = 500;
-
+    let delay = text.charAt(i-1)==="\n" ? 600 : 40;
     setTimeout(type, delay);
   } else {
-    // Show couple photo
-    setTimeout(() => {
-      couple.classList.remove("hidden");
-    }, 800);
-
-    // Show Valentine question
-    setTimeout(() => {
-      valentine.classList.remove("hidden");
-    }, 2600);
+    setTimeout(()=> couple.classList.remove("hidden"), 800);
+    setTimeout(()=> valentine.classList.remove("hidden"), 2600);
   }
 }
 
-/* ===============================
-   START BUTTON
-================================ */
-
-btn.addEventListener("click", () => {
-  unlockAudio();                 // allow browser audio
-  btn.style.display = "none";
-
-  setTimeout(() => {
-    fadeInMusic();               // play song
-    type();                      // start letter
-  }, 300);
+/* START */
+btn.addEventListener("click", ()=>{
+  btn.style.display="none";
+  startMusic();
+  type();
 });
-
