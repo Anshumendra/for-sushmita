@@ -1,74 +1,78 @@
+/* =========================
+   SAFE ELEMENT REFERENCES
+========================= */
 const song = document.getElementById("song");
-const letterBox = document.getElementById("letter");
 const startBtn = document.getElementById("startBtn");
-const space = document.getElementById("space");
-const fireworks = document.getElementById("fireworks");
+const letterBox = document.getElementById("letter");
+const nightBtn = document.getElementById("nightToggle");
 
-/* MUSIC – GUARANTEED */
-startBtn.onclick = ()=>{
-  startBtn.style.display="none";
-  song.volume = 0.7;
-  song.play();   // direct user click = works
-  type();
-};
+/* =========================
+   NIGHT MODE (FIXED)
+========================= */
+if (nightBtn) {
+  nightBtn.addEventListener("click", () => {
+    document.body.classList.toggle("night");
+  });
+}
 
-/* LETTER */
+/* =========================
+   YOUR ORIGINAL LETTER
+========================= */
 const text = `Sushmita ❤️
 
-This is not just a website.
-It is a feeling I wanted to keep forever.
+There is a world beyond those mountains, where the river is the river and the river is the river.
+There are houses between the mountains and the sky is below, Sushmita must be hiding under your feet and fireflies will be twinkling like earrings.
 
-Our first Valentine.
-Our memories.
-Our future.
+Sushmita don't ask about that world, there fireflies have taken the place of stars.
+People in that world have tied more threads of love than your sons, whose mention is still on the lips bubbling in the grave.
 
-Because loving you
-is the easiest thing my heart has learned.`;
+No one is lonely in that world, there is no employment except love Sushmita ❤️
 
-let i=0;
-function type(){
-  if(i<text.length){
-    letterBox.textContent+=text.charAt(i++);
-    setTimeout(type,40);
+Sushmita ❤️
+No one ages there, the sun never goes to hide and the moon never looks above your feet.
+The matter of that world is different, there the lamps burn in strong winds and the boat moves on the mountains.
+
+Sushmita ❤️
+There the seasons are pink, the leaves of the trees never turn yellow.
+It rains there too Sushmita when someone hums a song in love.
+
+The eagles, crows and vultures there don't eat meat, they bite the drops of dew,
+that land is so pure and clean that the souls coming out of the graves hug those who love them.
+
+One day when we will get tired of this world, we will call the angels there.
+Sushmita, in that world everything said to you will be a promise and nothing will be incomplete for us.
+
+Sushmita,
+there the meaning of life will be love.`;
+
+/* =========================
+   TYPING EFFECT
+========================= */
+let i = 0;
+
+function typeLetter() {
+  if (i < text.length) {
+    letterBox.textContent += text.charAt(i);
+    i++;
+
+    let delay = text.charAt(i - 1) === "\n" ? 500 : 40;
+    setTimeout(typeLetter, delay);
   }
 }
 
-/* NIGHT MODE */
-document.getElementById("nightToggle").onclick=()=>{
-  document.body.classList.toggle("night");
-  if(document.body.classList.contains("night")){
-    createStars();
-    createComet();
-  }
-};
+/* =========================
+   MUSIC + START (GUARANTEED)
+========================= */
+if (startBtn) {
+  startBtn.addEventListener("click", () => {
+    startBtn.style.display = "none";
 
-function createStars(){
-  for(let i=0;i<80;i++){
-    const s=document.createElement("span");
-    s.style.width=s.style.height=Math.random()*2+1+"px";
-    s.style.left=Math.random()*100+"%";
-    s.style.top=Math.random()*100+"%";
-    space.appendChild(s);
-  }
-}
+    // Direct play inside click = works
+    if (song) {
+      song.volume = 0.7;
+      song.play().catch(() => {});
+    }
 
-function createComet(){
-  const c=document.createElement("div");
-  c.className="comet";
-  space.appendChild(c);
-}
-
-/* CELEBRATION */
-function celebrate(){
-  for(let i=0;i<80;i++){
-    const f=document.createElement("div");
-    f.className="fire";
-    f.style.left="50%";
-    f.style.top="50%";
-    f.style.setProperty("--x",(Math.random()*600-300)+"px");
-    f.style.setProperty("--y",(Math.random()*600-300)+"px");
-    fireworks.appendChild(f);
-    setTimeout(()=>f.remove(),1000);
-  }
-  document.getElementById("finalText").style.display="flex";
+    typeLetter();
+  });
 }
