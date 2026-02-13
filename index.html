@@ -11,25 +11,16 @@
 
 <body>
 
-<!-- PASSWORD LOCK -->
-<div id="lock">
-  <h2>💛 Only for Sushmita</h2>
-  <input type="password" id="pass" placeholder="Enter password">
-  <button onclick="unlock()">Enter</button>
-</div>
-
-<!-- AUDIO -->
 <audio id="song" preload="auto">
   <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
 </audio>
 
-<!-- FIRELIES -->
-<div id="fireflies"></div>
+<div id="space"></div>
+<div id="fireworks"></div>
 
 <button id="nightToggle">🌙</button>
-<button id="langToggle">हिंदी</button>
 
-<div class="page hidden" id="page">
+<div class="page">
 
   <h1>Sushmita 🌻</h1>
   <p class="sub">Our First Valentine — 2026</p>
@@ -45,21 +36,21 @@
 
   <div class="couple">
     <img src="assets/couple.jpg">
-    <p>That quiet afternoon in the park — when the world paused for us 🌿</p>
+    <p>The day we lay on the grass and forgot the world 🌿</p>
   </div>
 
   <div class="valentine">
     <h2>Will you be my Valentine, Sushmita? 💖</h2>
     <div class="choices">
-      <button class="yes" onclick="kiss()">Always 💕</button>
-      <button class="yes" onclick="kiss()">Yes 🌻</button>
+      <button onclick="celebrate()">Always 💕</button>
+      <button onclick="celebrate()">Yes 🌻</button>
     </div>
     <span>— Forever yours, Anshumendra</span>
   </div>
 
 </div>
 
-<div id="kiss">💋</div>
+<div id="finalText">💖 SHE SAID YES 💖</div>
 
 <script src="script.js"></script>
 </body>
