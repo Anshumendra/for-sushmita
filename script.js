@@ -20,20 +20,20 @@ document.getElementById("nightToggle").addEventListener("click", () => {
   document.body.classList.toggle("night");
 });
 
-// ----- MUSIC PLAYER (robust) -----
+// ----- MUSIC PLAYER (with diagnostics) -----
 const song1 = document.getElementById("song1");
 const song2 = document.getElementById("song2");
 const startBtn = document.getElementById("startBtn");
 const playSong2Btn = document.getElementById("playSong2");
 const letterDiv = document.getElementById("letter");
 
-// Optional: small status element (you can add this in HTML if desired)
+// Music status indicator
 let musicStatus = document.createElement('div');
 musicStatus.id = 'music-status';
 musicStatus.style.margin = '10px auto';
 musicStatus.style.fontSize = '0.9rem';
 musicStatus.style.color = '#006994';
-musicStatus.style.display = 'none'; // hidden by default
+musicStatus.style.display = 'none';
 startBtn.parentNode.insertBefore(musicStatus, startBtn.nextSibling);
 
 function pauseAll() {
@@ -43,27 +43,48 @@ function pauseAll() {
 
 function playSong(audioElement, name) {
   pauseAll();
+  
+  // Force load if not ready
+  if (audioElement.readyState === 0) {
+    audioElement.load();
+  }
+
   audioElement.play()
     .then(() => {
       console.log(`Playing: ${name}`);
-      if (musicStatus) {
-        musicStatus.textContent = `🎵 Now playing: ${name}`;
-        musicStatus.style.display = 'block';
-      }
+      musicStatus.textContent = `🎵 Now playing: ${name}`;
+      musicStatus.style.display = 'block';
     })
     .catch(err => {
       console.warn(`Failed to play ${name}:`, err);
-      if (musicStatus) {
-        musicStatus.textContent = `⚠️ Click again to play music (browser restriction)`;
-        musicStatus.style.display = 'block';
+      let errorMsg = `⚠️ Could not play ${name}. `;
+      if (err.name === 'NotSupportedError') {
+        errorMsg += 'File format not supported.';
+      } else if (err.name === 'NotFoundError' || err.message.includes('404')) {
+        errorMsg += 'File not found. Check filename.';
+      } else {
+        errorMsg += 'Click again or check file.';
       }
+      musicStatus.textContent = errorMsg;
+      musicStatus.style.display = 'block';
     });
 }
 
-// Start button -> song1 (down in the valley)
+// Error listeners for audio elements
+song1.addEventListener('error', (e) => {
+  console.error('Song1 error:', e);
+  musicStatus.textContent = '⚠️ First song failed to load. Check file.';
+  musicStatus.style.display = 'block';
+});
+
+song2.addEventListener('error', (e) => {
+  console.error('Song2 error:', e);
+  musicStatus.textContent = '⚠️ Second song failed to load. Check file.';
+  musicStatus.style.display = 'block';
+});
+
 startBtn.addEventListener("click", () => {
   playSong(song1, "Down in the Valley");
-  // Start typing effect if not already
   if (!typingInterval) {
     letterDiv.textContent = "";
     charIndex = 0;
@@ -71,7 +92,6 @@ startBtn.addEventListener("click", () => {
   }
 });
 
-// Special song button -> song2 (chandi jaisa rang)
 playSong2Btn.addEventListener("click", () => {
   playSong(song2, "Chandi Jaisa Rang");
 });
@@ -110,14 +130,13 @@ function toggleSecret() {
 function updateBirthdayCountdown() {
   const today = new Date();
   const currentYear = today.getFullYear();
-  let birthday = new Date(currentYear, 7, 2); // August 2
+  let birthday = new Date(currentYear, 7, 2);
   if (today > birthday) {
     birthday = new Date(currentYear + 1, 7, 2);
   }
   const diffTime = birthday - today;
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const message = `🎂 ${diffDays} days until your birthday (2 Aug)`;
-  document.getElementById("birthdayMessage").textContent = message;
+  document.getElementById("birthdayMessage").textContent = `🎂 ${diffDays} days until your birthday (2 Aug)`;
 }
 
 // ----- CELEBRATE (firecracker confetti) -----
@@ -186,11 +205,10 @@ function createSunflowerPetals() {
   }
 }
 
-// Initialize everything after DOM loads
+// Initialize
 window.addEventListener('load', () => {
   createSunflowerPetals();
   updateBirthdayCountdown();
-  // Preload audio metadata (optional)
   song1.load();
   song2.load();
 });
