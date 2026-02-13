@@ -11,23 +11,35 @@
 
 <body>
 
+<!-- PASSWORD LOCK -->
+<div id="lock">
+  <h2>💛 Only for Sushmita</h2>
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="unlock()">Enter</button>
+</div>
+
+<!-- AUDIO -->
 <audio id="song" preload="auto">
   <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
 </audio>
 
-<div id="floating"></div>
+<!-- FIRELIES -->
+<div id="fireflies"></div>
 
-<div class="page">
+<button id="nightToggle">🌙</button>
+<button id="langToggle">हिंदी</button>
+
+<div class="page hidden" id="page">
 
   <h1>Sushmita 🌻</h1>
-  <p class="sub">Our First Valentine</p>
+  <p class="sub">Our First Valentine — 2026</p>
 
   <div class="photos">
     <img src="assets/sushmita.jpg">
     <img src="assets/anshumendra.jpg">
   </div>
 
-  <button id="startBtn">💛 Read My Valentine Letter</button>
+  <button id="startBtn">💛 Start Our Valentine</button>
 
   <div id="letter" class="letter"></div>
 
@@ -38,10 +50,16 @@
 
   <div class="valentine">
     <h2>Will you be my Valentine, Sushmita? 💖</h2>
-    <span>— Always yours, Anshumendra</span>
+    <div class="choices">
+      <button class="yes" onclick="kiss()">Always 💕</button>
+      <button class="yes" onclick="kiss()">Yes 🌻</button>
+    </div>
+    <span>— Forever yours, Anshumendra</span>
   </div>
 
 </div>
+
+<div id="kiss">💋</div>
 
 <script src="script.js"></script>
 </body>
