@@ -11,21 +11,23 @@
 
 <body>
 
-<!-- 🔐 LOCK SCREEN -->
+<!-- 🔐 LOCK -->
 <div id="lock">
   <h2>Only for Sushmita 💛</h2>
   <input id="pass" type="password" placeholder="Password">
   <button onclick="unlock()">Enter</button>
 </div>
 
-<!-- 🎵 AUDIO -->
+<!-- 🎵 MUSIC -->
 <audio id="song">
   <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🌌 BACKGROUND LAYERS -->
+<!-- BACKGROUNDS -->
+<div id="dayAnim"></div>
 <div id="galaxy"></div>
 <div id="comets"></div>
+<div id="moon">Sushmita</div>
 <div id="fireworks"></div>
 
 <button id="nightToggle">🌙</button>
@@ -60,7 +62,12 @@
 
 </div>
 
-<div id="yesScreen">💖 SHE SAID YES 💖</div>
+<div id="yesScreen">
+  <div>
+    💖 SHE SAID YES 💖<br><br>
+    <button onclick="closeYes()">Relive this moment 🌻</button>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
