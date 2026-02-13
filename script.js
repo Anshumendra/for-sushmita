@@ -83,7 +83,7 @@ playSong2Btn.addEventListener("click", () => {
   playSong(song2, "Chandi Jaisa Rang");
 });
 
-// ----- NEW LETTER TEXT (your beautiful poem) -----
+// ----- NEW LETTER TEXT -----
 const letterText = `Mary ❤️ There is a world beyond those mountains, where the river is the river and the river is the river. There are houses between the mountains and the sky is below, Mary must be hiding under your feet and fireflies will be twinkling like earrings. Mary don't ask about that world, there fireflies have taken the place of stars. People in that world have tied more threads of love than your sons, whose mention is still on the lips bubbling in the grave. No one is lonely in that world, there is no employment except love Mary ❤️. Mary ❤️ No one ages there, the sun never goes to hide and the moon never looks above your feet. The matter of that world is different, there the lamps burn in strong winds and the boat moves on the mountains. Mary ❤️ There the seasons are pink, the leaves of the trees never turn yellow. It rains there too Mary when someone hums a song in love. The eagles, crows and vultures there don't eat meat, they bite the drops of dew, that land is so pure and clean that the souls coming out of the graves hug those who love them. One day when we will get tired of this world, we will call the angels there. Mary, in that world everything said to you will be a promise and nothing will be incomplete for us. We will sing our songs there, you make tunes there.
 
 Mary there the meaning of life will be love`;
@@ -119,7 +119,7 @@ function updateBirthdayCountdown() {
   document.getElementById("birthdayMessage").textContent = `🎂 ${diffDays} days until your birthday (2 Aug)`;
 }
 
-// ----- CELEBRATE (firecracker confetti) -----
+// ----- CELEBRATE -----
 function celebrate() {
   document.getElementById("yesScreen").style.display = "flex";
 
@@ -167,7 +167,7 @@ function closeYes() {
   document.getElementById("yesScreen").style.display = "none";
 }
 
-// ----- CREATE FLOATING SUNFLOWER PETALS -----
+// ----- CREATE SUNFLOWER PETALS -----
 function createSunflowerPetals() {
   const bgDiv = document.createElement('div');
   bgDiv.className = 'flower-bg';
