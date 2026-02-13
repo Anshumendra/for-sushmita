@@ -1,74 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our First Valentine 💖</title>
+*{margin:0;padding:0;box-sizing:border-box}
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fff1f7,#ffe5b4);
+  transition:.4s;
+  overflow-y:auto;
+}
 
-<body>
+body.night{
+  background:linear-gradient(135deg,#1b1b2f,#16213e);
+  color:#f5f5f5;
+}
 
-<!-- 🔐 LOCK -->
-<div id="lock">
-  <h2>Only for Sushmita 💛</h2>
-  <input id="pass" type="password" placeholder="Password">
-  <button onclick="unlock()">Enter</button>
-</div>
+.hidden{display:none}
 
-<!-- 🎵 MUSIC -->
-<audio id="song">
-  <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
-</audio>
+#lock{
+  position:fixed;
+  inset:0;
+  background:#ffe5b4;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
 
-<!-- BACKGROUNDS -->
-<div id="dayAnim"></div>
-<div id="galaxy"></div>
-<div id="comets"></div>
-<div id="moon">Sushmita</div>
-<div id="fireworks"></div>
+#lock input{
+  padding:10px;
+  margin:10px;
+  font-size:16px;
+}
 
-<button id="nightToggle">🌙</button>
+.page{
+  max-width:520px;
+  margin:auto;
+  padding:30px 20px 80px;
+  text-align:center;
+}
 
-<div id="page" class="page hidden">
+h1{
+  font-family:'Playfair Display',serif;
+  color:#e76f51;
+  font-size:34px;
+}
 
-  <h1>Sushmita 🌻</h1>
-  <p class="sub">Our First Valentine — 2026</p>
+.sub{
+  font-family:'Dancing Script',cursive;
+  font-size:22px;
+  color:#b56576;
+}
 
-  <div class="photos">
-    <img src="assets/sushmita.jpg">
-    <img src="assets/anshumendra.jpg">
-  </div>
+.photos{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin:20px 0;
+}
 
-  <button id="startBtn">💛 Start Our Valentine</button>
+.photos img{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #f4a261;
+}
 
-  <div id="letter" class="letter"></div>
+button{
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  background:#f4a261;
+  color:white;
+  margin:10px;
+}
 
-  <div class="couple">
-    <img src="assets/couple.jpg">
-    <p>The day we lay in the park and forgot the world 🌿</p>
-  </div>
+#nightToggle,#langToggle{
+  position:fixed;
+  top:10px;
+}
 
-  <div class="valentine">
-    <h2>Will you be my Valentine, Sushmita? 💖</h2>
-    <div class="choices">
-      <button onclick="celebrate()">Always 💕</button>
-      <button onclick="celebrate()">Yes 🌻</button>
-    </div>
-    <span>— Forever yours, Anshumendra</span>
-  </div>
+#nightToggle{right:10px}
+#langToggle{left:10px}
 
-</div>
+.letter{
+  font-family:'Dancing Script',cursive;
+  font-size:20px;
+  line-height:1.8;
+  white-space:pre-wrap;
+  text-align:left;
+  margin-top:20px;
+}
 
-<div id="yesScreen">
-  <div>
-    💖 SHE SAID YES 💖<br><br>
-    <button onclick="closeYes()">Relive this moment 🌻</button>
-  </div>
-</div>
+.couple img{
+  width:100%;
+  border-radius:20px;
+  margin-top:30px;
+}
 
-<script src="script.js"></script>
-</body>
-</html>
+.valentine{
+  margin-top:40px;
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  color:#e63946;
+}
+
+.choices{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+
+.yes{
+  background:#ff6b9d;
+}
+
+#fireflies span{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:yellow;
+  border-radius:50%;
+  animation:fly linear infinite;
+  opacity:.7;
+}
+
+@keyframes fly{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-120vh)}
+}
+
+#kiss{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  font-size:80px;
+  animation:pop 1s forwards;
+}
+
+@keyframes pop{
+  0%{transform:scale(0)}
+  100%{transform:scale(1)}
+}
