@@ -20,7 +20,7 @@ document.getElementById("nightToggle").addEventListener("click", () => {
   document.body.classList.toggle("night");
 });
 
-// ----- MUSIC PLAYER (with diagnostics) -----
+// ----- MUSIC PLAYER -----
 const song1 = document.getElementById("song1");
 const song2 = document.getElementById("song2");
 const startBtn = document.getElementById("startBtn");
@@ -43,12 +43,7 @@ function pauseAll() {
 
 function playSong(audioElement, name) {
   pauseAll();
-  
-  // Force load if not ready
-  if (audioElement.readyState === 0) {
-    audioElement.load();
-  }
-
+  if (audioElement.readyState === 0) audioElement.load();
   audioElement.play()
     .then(() => {
       console.log(`Playing: ${name}`);
@@ -58,27 +53,19 @@ function playSong(audioElement, name) {
     .catch(err => {
       console.warn(`Failed to play ${name}:`, err);
       let errorMsg = `⚠️ Could not play ${name}. `;
-      if (err.name === 'NotSupportedError') {
-        errorMsg += 'File format not supported.';
-      } else if (err.name === 'NotFoundError' || err.message.includes('404')) {
-        errorMsg += 'File not found. Check filename.';
-      } else {
-        errorMsg += 'Click again or check file.';
-      }
+      if (err.name === 'NotSupportedError') errorMsg += 'File format not supported.';
+      else if (err.name === 'NotFoundError' || err.message.includes('404')) errorMsg += 'File not found. Check filename.';
+      else errorMsg += 'Click again or check file.';
       musicStatus.textContent = errorMsg;
       musicStatus.style.display = 'block';
     });
 }
 
-// Error listeners for audio elements
-song1.addEventListener('error', (e) => {
-  console.error('Song1 error:', e);
+song1.addEventListener('error', () => {
   musicStatus.textContent = '⚠️ First song failed to load. Check file.';
   musicStatus.style.display = 'block';
 });
-
-song2.addEventListener('error', (e) => {
-  console.error('Song2 error:', e);
+song2.addEventListener('error', () => {
   musicStatus.textContent = '⚠️ Second song failed to load. Check file.';
   musicStatus.style.display = 'block';
 });
@@ -96,17 +83,10 @@ playSong2Btn.addEventListener("click", () => {
   playSong(song2, "Chandi Jaisa Rang");
 });
 
-// ----- TYPING EFFECT -----
-const letterText = `Sushmita ❤️
+// ----- NEW LETTER TEXT (your beautiful poem) -----
+const letterText = `Mary ❤️ There is a world beyond those mountains, where the river is the river and the river is the river. There are houses between the mountains and the sky is below, Mary must be hiding under your feet and fireflies will be twinkling like earrings. Mary don't ask about that world, there fireflies have taken the place of stars. People in that world have tied more threads of love than your sons, whose mention is still on the lips bubbling in the grave. No one is lonely in that world, there is no employment except love Mary ❤️. Mary ❤️ No one ages there, the sun never goes to hide and the moon never looks above your feet. The matter of that world is different, there the lamps burn in strong winds and the boat moves on the mountains. Mary ❤️ There the seasons are pink, the leaves of the trees never turn yellow. It rains there too Mary when someone hums a song in love. The eagles, crows and vultures there don't eat meat, they bite the drops of dew, that land is so pure and clean that the souls coming out of the graves hug those who love them. One day when we will get tired of this world, we will call the angels there. Mary, in that world everything said to you will be a promise and nothing will be incomplete for us. We will sing our songs there, you make tunes there.
 
-There is a world beyond those mountains,
-where love is the only work people do.
-
-One day,
-I hope we walk there together.
-
-Because for me,
-the meaning of life is you.`;
+Mary there the meaning of life will be love`;
 
 let charIndex = 0;
 let typingInterval = null;
