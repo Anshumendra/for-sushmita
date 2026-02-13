@@ -13,7 +13,7 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* 🦋 Butterfly animation (kept as before) */
+/* 🦋 Butterfly animation (unchanged) */
 body::before {
   content: "🦋";
   position: fixed;
@@ -38,7 +38,7 @@ body::after {
   animation: floatButterfly 22s infinite reverse;
 }
 
-/* 🌻 Sunflower petals (additional floating element) */
+/* 🌻 Sunflower petals background */
 .flower-bg {
   position: fixed;
   top: 0;
@@ -57,8 +57,6 @@ body::after {
   animation: floatSunflower 20s infinite alternate;
 }
 
-/* Generate a few sunflower positions via JS or manually in HTML? 
-   We'll inject them via JavaScript for simplicity (see script) */
 @keyframes floatButterfly {
   0% { transform: translate(0, 0) rotate(0deg); }
   25% { transform: translate(20px, -30px) rotate(5deg); }
@@ -71,6 +69,46 @@ body::after {
   0% { transform: translate(0, 0) rotate(0deg); opacity: 0.05; }
   50% { transform: translate(30px, -40px) rotate(180deg); opacity: 0.15; }
   100% { transform: translate(-20px, 20px) rotate(360deg); opacity: 0.05; }
+}
+
+/* 🌊 Ocean blue color variable */
+:root {
+  --ocean-blue: #006994;
+  --ocean-light: #7ec8e0;
+}
+
+/* Ocean accent class */
+.ocean-accent {
+  border: 2px solid var(--ocean-blue);
+  background-color: rgba(0, 105, 148, 0.1);
+  color: var(--ocean-blue);
+  transition: all 0.2s;
+}
+
+.ocean-accent:hover {
+  background-color: var(--ocean-blue);
+  color: white;
+}
+
+/* Headings with ocean underline */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #e76f51;
+  margin-bottom: 0.2rem;
+  position: relative;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--ocean-blue), transparent);
 }
 
 /* ---------- NIGHT MODE ---------- */
@@ -95,9 +133,8 @@ body.night .couple p {
   color: #d4b48c;
 }
 
-/* subtle stars in night mode */
 body.night .flower-bg span {
-  opacity: 0.08; /* even fainter at night */
+  opacity: 0.08;
 }
 
 body.night::before,
@@ -163,7 +200,6 @@ body.night::after {
   top: 20px;
   right: 20px;
   padding: 10px 15px;
-  border: none;
   border-radius: 40px;
   background: #f4a261;
   color: white;
@@ -171,9 +207,14 @@ body.night::after {
   cursor: pointer;
   z-index: 100;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border: 2px solid transparent;
 }
 
-/* MAIN PAGE (hidden until unlocked) */
+#nightToggle:hover {
+  background: #e76f51;
+}
+
+/* MAIN PAGE */
 #page {
   display: flex;
   justify-content: center;
@@ -184,21 +225,6 @@ body.night::after {
   width: 100%;
   padding: 40px 20px 80px;
   text-align: center;
-}
-
-/* HEADINGS */
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  color: #e76f51;
-  margin-bottom: 0.2rem;
-}
-
-.sub {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.8rem;
-  color: #b56576;
-  margin-bottom: 2rem;
 }
 
 /* PROFILE PHOTOS */
@@ -306,6 +332,38 @@ h1 {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* BIRTHDAY COUNTDOWN */
+.birthday-countdown {
+  margin: 20px auto;
+  padding: 12px 20px;
+  border-radius: 40px;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  background: rgba(0, 105, 148, 0.05);
+  border: 2px solid var(--ocean-blue);
+  color: var(--ocean-blue);
+}
+
+/* SECOND SONG BUTTON */
+#playSong2 {
+  margin: 10px auto 30px;
+  padding: 12px 30px;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid var(--ocean-blue);
+  color: var(--ocean-blue);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+#playSong2:hover {
+  background: var(--ocean-blue);
+  color: white;
 }
 
 /* COUPLE PHOTO */
@@ -426,4 +484,5 @@ h1 {
   .letter { font-size: 1.3rem; padding: 20px; }
   #nightToggle { top: 10px; right: 10px; padding: 8px 12px; }
   .hidden-message { font-size: 1.2rem; }
+  .birthday-countdown { font-size: 1rem; }
 }
