@@ -10,6 +10,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* 🌸 Subtle floating hearts animation (background only) */
@@ -33,6 +34,44 @@ body::before {
   10% { opacity: 0.3; }
   90% { opacity: 0.2; }
   100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ---------- NIGHT MODE ---------- */
+body.night {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  color: #e0e0e0;
+}
+
+body.night h1,
+body.night .sub,
+body.night .valentine h2 {
+  color: #ffdab9;
+}
+
+body.night .letter {
+  background: rgba(0, 0, 0, 0.3);
+  color: #f0e6d2;
+  border: 1px solid #ffb347;
+}
+
+body.night .couple p {
+  color: #d4b48c;
+}
+
+/* subtle stars in night mode */
+body.night::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 10px 10px, #fff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 30px 40px, #ffd700, rgba(0,0,0,0));
+  background-size: 200px 200px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* LOCK SCREEN */
@@ -85,6 +124,22 @@ body::before {
   color: #c44;
   margin-top: 1rem;
   min-height: 1.5rem;
+}
+
+/* NIGHT MODE BUTTON */
+#nightToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 40px;
+  background: #f4a261;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* MAIN PAGE (hidden until unlocked) */
@@ -185,6 +240,50 @@ h1 {
   color: #6b4f4f;
 }
 
+/* OUR MOMENTS GALLERY */
+.moments {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.moments h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #e76f51;
+  margin-bottom: 20px;
+}
+
+.gallery {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 15px 5px;
+  scrollbar-width: thin;
+  scrollbar-color: #f4a261 #ffe5b4;
+}
+
+.gallery img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid #f4a261;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+.gallery::-webkit-scrollbar {
+  height: 8px;
+}
+.gallery::-webkit-scrollbar-thumb {
+  background: #f4a261;
+  border-radius: 20px;
+}
+
 /* VALENTINE QUESTION */
 .valentine {
   margin-top: 50px;
@@ -236,13 +335,27 @@ h1 {
   font-family: 'Dancing Script', cursive;
   z-index: 1000;
   backdrop-filter: blur(3px);
+  animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 10px #ffb703; }
+  50% { text-shadow: 0 0 30px #ffb703, 0 0 60px #ff6b6b; }
+  100% { text-shadow: 0 0 10px #ffb703; }
 }
 
 #yesScreen div {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
   padding: 30px 50px;
   border-radius: 60px;
-  border: 2px solid #ffb703;
+  border: 3px solid #ffb703;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 #yesScreen button {
@@ -264,7 +377,10 @@ h1 {
 /* RESPONSIVE */
 @media (max-width: 600px) {
   h1 { font-size: 2.5rem; }
+  .sub { font-size: 1.5rem; }
   .valentine h2 { font-size: 1.8rem; }
   .photos img { width: 100px; height: 100px; }
   .letter { font-size: 1.3rem; padding: 20px; }
+  .gallery img { width: 150px; height: 120px; }
+  #nightToggle { top: 10px; right: 10px; padding: 8px 12px; }
 }
