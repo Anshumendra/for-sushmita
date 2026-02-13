@@ -59,6 +59,12 @@ startBtn.addEventListener("click", () => {
   }
 });
 
+// ----- SUNFLOWER SECRET MESSAGE TOGGLE -----
+function toggleSecret() {
+  const secret = document.getElementById("secretMessage");
+  secret.classList.toggle("show");
+}
+
 // ----- CELEBRATE (firecracker confetti) -----
 function celebrate() {
   // Show yes overlay
@@ -113,3 +119,26 @@ function celebrate() {
 function closeYes() {
   document.getElementById("yesScreen").style.display = "none";
 }
+
+// ----- CREATE FLOATING SUNFLOWER PETALS BACKGROUND -----
+function createSunflowerPetals() {
+  const bgDiv = document.createElement('div');
+  bgDiv.className = 'flower-bg';
+  document.body.appendChild(bgDiv);
+
+  // Create 12 floating sunflowers with random positions and delays
+  for (let i = 0; i < 12; i++) {
+    const span = document.createElement('span');
+    span.textContent = '🌻'; // or use a petal shape? emoji works
+    span.style.left = Math.random() * 100 + '%';
+    span.style.top = Math.random() * 100 + '%';
+    span.style.animationDuration = (15 + Math.random() * 20) + 's';
+    span.style.animationDelay = (Math.random() * 10) + 's';
+    span.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+    span.style.opacity = 0.08 + Math.random() * 0.1;
+    bgDiv.appendChild(span);
+  }
+}
+
+// Initialize background on page load
+window.addEventListener('load', createSunflowerPetals);
