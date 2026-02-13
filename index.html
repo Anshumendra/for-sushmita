@@ -1,66 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our First Valentine 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Only for Sushmita 💛</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- PASSWORD LOCK -->
-<div id="lock">
-  <h2>💛 Only for Sushmita</h2>
-  <input type="password" id="pass" placeholder="Enter password">
-  <button onclick="unlock()">Enter</button>
-</div>
-
-<!-- AUDIO -->
-<audio id="song" preload="auto">
-  <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
-</audio>
-
-<!-- FIRELIES -->
-<div id="fireflies"></div>
-
-<button id="nightToggle">🌙</button>
-<button id="langToggle">हिंदी</button>
-
-<div class="page hidden" id="page">
-
-  <h1>Sushmita 🌻</h1>
-  <p class="sub">Our First Valentine — 2026</p>
-
-  <div class="photos">
-    <img src="assets/sushmita.jpg">
-    <img src="assets/anshumendra.jpg">
+  <!-- 🔐 LOCK SCREEN -->
+  <div id="lock">
+    <h2>💛 Only for Sushmita</h2>
+    <input id="pass" type="password" placeholder="Enter password">
+    <button onclick="unlock()">Enter</button>
   </div>
 
-  <button id="startBtn">💛 Start Our Valentine</button>
+  <!-- 🎵 BACKGROUND MUSIC -->
+  <audio id="song" preload="auto">
+    <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
+  </audio>
 
-  <div id="letter" class="letter"></div>
+  <!-- 🌤️ DAY / NIGHT BACKGROUND LAYERS -->
+  <div id="dayAnim"></div>
+  <div id="galaxy"></div>
+  <div id="comets"></div>
+  <div id="moon">Sushmita</div>
+  <div id="fireworks"></div>
 
-  <div class="couple">
-    <img src="assets/couple.jpg">
-    <p>That quiet afternoon in the park — when the world paused for us 🌿</p>
-  </div>
+  <!-- 🌙 NIGHT MODE BUTTON -->
+  <button id="nightToggle">🌙</button>
 
-  <div class="valentine">
-    <h2>Will you be my Valentine, Sushmita? 💖</h2>
-    <div class="choices">
-      <button class="yes" onclick="kiss()">Always 💕</button>
-      <button class="yes" onclick="kiss()">Yes 🌻</button>
+  <!-- 🌻 MAIN PAGE -->
+  <div id="page" class="page hidden">
+    <div class="container">
+
+      <!-- TITLE -->
+      <h1>Sushmita 🌻</h1>
+      <p class="sub">Our First Valentine — 2026</p>
+
+      <!-- PHOTOS -->
+      <div class="photos">
+        <img src="assets/sushmita.jpg" alt="Sushmita">
+        <img src="assets/anshumendra.jpg" alt="Anshumendra">
+      </div>
+
+      <!-- START BUTTON -->
+      <button id="startBtn">💛 Start Our Valentine</button>
+
+      <!-- LETTER -->
+      <div id="letter" class="letter"></div>
+
+      <!-- COUPLE PHOTO -->
+      <div class="couple">
+        <img src="assets/couple.jpg" alt="Together in the park">
+        <p>That quiet afternoon in the park — when the world paused for us 🌿</p>
+      </div>
+
+      <!-- VALENTINE QUESTION -->
+      <div class="valentine">
+        <h2>Will you be my Valentine, Sushmita? 💖</h2>
+
+        <div class="choices">
+          <button onclick="celebrate()">Always 💕</button>
+          <button onclick="celebrate()">Yes 🌻</button>
+        </div>
+
+        <p style="margin-top:20px;">— Forever yours, Anshumendra</p>
+      </div>
+
     </div>
-    <span>— Forever yours, Anshumendra</span>
   </div>
 
-</div>
+  <!-- 💖 YES SCREEN -->
+  <div id="yesScreen">
+    <div>
+      💖 SHE SAID YES 💖<br><br>
+      <button onclick="closeYes()">Relive this moment 🌻</button>
+    </div>
+  </div>
 
-<div id="kiss">💋</div>
+  <!-- JS -->
+  <script src="script.js"></script>
 
-<script src="script.js"></script>
 </body>
 </html>
