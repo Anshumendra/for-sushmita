@@ -3,32 +3,41 @@
 body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(135deg,#fff1f7,#ffe5b4);
-  transition:.4s;
   overflow-y:auto;
+  transition:1s;
 }
 
 body.night{
-  background:linear-gradient(135deg,#1b1b2f,#16213e);
-  color:#f5f5f5;
+  background:radial-gradient(circle at top,#1b2735,#090a0f);
+  color:white;
 }
 
-.hidden{display:none}
-
-#lock{
+/* Galaxy */
+#space span{
   position:fixed;
-  inset:0;
-  background:#ffe5b4;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:10;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:twinkle 3s infinite alternate;
 }
 
-#lock input{
-  padding:10px;
-  margin:10px;
-  font-size:16px;
+@keyframes twinkle{
+  from{opacity:.2}
+  to{opacity:1}
+}
+
+/* Comets */
+.comet{
+  position:fixed;
+  width:120px;
+  height:2px;
+  background:linear-gradient(90deg,white,transparent);
+  animation:shoot 2s linear infinite;
+}
+
+@keyframes shoot{
+  from{transform:translate(-200px,-200px)}
+  to{transform:translate(120vw,120vh)}
 }
 
 .page{
@@ -61,8 +70,8 @@ h1{
   width:110px;
   height:110px;
   border-radius:50%;
-  object-fit:cover;
   border:4px solid #f4a261;
+  object-fit:cover;
 }
 
 button{
@@ -71,21 +80,18 @@ button{
   border-radius:30px;
   background:#f4a261;
   color:white;
-  margin:10px;
+  margin:12px;
 }
 
-#nightToggle,#langToggle{
+#nightToggle{
   position:fixed;
   top:10px;
+  right:10px;
 }
-
-#nightToggle{right:10px}
-#langToggle{left:10px}
 
 .letter{
   font-family:'Dancing Script',cursive;
   font-size:20px;
-  line-height:1.8;
   white-space:pre-wrap;
   text-align:left;
   margin-top:20px;
@@ -104,42 +110,31 @@ button{
   color:#e63946;
 }
 
-.choices{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-}
-
-.yes{
-  background:#ff6b9d;
-}
-
-#fireflies span{
+/* Fireworks */
+.fire{
   position:fixed;
-  width:6px;
-  height:6px;
-  background:yellow;
+  width:8px;
+  height:8px;
+  background:gold;
   border-radius:50%;
-  animation:fly linear infinite;
-  opacity:.7;
+  animation:explode 1s forwards;
 }
 
-@keyframes fly{
-  from{transform:translateY(100vh)}
-  to{transform:translateY(-120vh)}
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y)) scale(0);
+    opacity:0;
+  }
 }
 
-#kiss{
+#finalText{
   position:fixed;
   inset:0;
   display:none;
   justify-content:center;
   align-items:center;
-  font-size:80px;
-  animation:pop 1s forwards;
-}
-
-@keyframes pop{
-  0%{transform:scale(0)}
-  100%{transform:scale(1)}
+  font-size:50px;
+  font-family:'Playfair Display',serif;
+  background:rgba(0,0,0,.8);
+  color:#ffb703;
 }
