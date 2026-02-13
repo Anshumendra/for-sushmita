@@ -11,7 +11,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- canvas-confetti for celebration -->
+  <!-- canvas-confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 </head>
 <body>
@@ -24,19 +24,22 @@
     <p id="lock-error"></p>
   </div>
 
-  <!-- 🎵 BACKGROUND MUSIC -->
-  <audio id="song" preload="auto">
+  <!-- 🎵 AUDIO PLAYERS (both preload) -->
+  <audio id="song1" preload="auto">
     <source src="assets/down-in-the-valley.mp3" type="audio/mpeg">
   </audio>
+  <audio id="song2" preload="auto">
+    <source src="assets/chandi-jaisa-rang.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- 🌙 NIGHT MODE BUTTON -->
-  <button id="nightToggle">🌙</button>
+  <!-- 🌙 NIGHT MODE BUTTON (with ocean blue accent) -->
+  <button id="nightToggle" class="ocean-accent">🌙</button>
 
   <!-- 🌻 MAIN PAGE -->
   <div id="page" class="page hidden">
     <div class="container">
 
-      <!-- TITLE -->
+      <!-- TITLE with ocean blue underline -->
       <h1>Sushmita 🌻</h1>
       <p class="sub">Our First Valentine — 2026</p>
 
@@ -52,7 +55,7 @@
       <!-- LETTER (filled by JavaScript) -->
       <div id="letter" class="letter"></div>
 
-      <!-- SECRET SUNFLOWER MESSAGE (click to reveal) -->
+      <!-- SECRET SUNFLOWER MESSAGE -->
       <div class="sunflower-secret">
         <span id="sunflowerIcon" onclick="toggleSecret()">🌻</span>
         <div id="secretMessage" class="hidden-message">
@@ -60,6 +63,14 @@
           <p class="secret-date">— 15 Jan 2026, रात</p>
         </div>
       </div>
+
+      <!-- 🎂 BIRTHDAY COUNTDOWN (ocean blue) -->
+      <div class="birthday-countdown ocean-accent">
+        <span id="birthdayMessage"></span>
+      </div>
+
+      <!-- 🎵 SECOND SONG BUTTON (ocean blue) -->
+      <button id="playSong2" class="ocean-accent">🎵 Our Special Song</button>
 
       <!-- COUPLE PHOTO -->
       <div class="couple">
