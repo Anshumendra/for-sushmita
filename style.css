@@ -23,7 +23,7 @@ body{
   overflow:hidden;
 }
 
-/* Floating sunflowers & hearts */
+/* Floating elements */
 #sunflower-layer span{
   position:absolute;
   font-size:26px;
@@ -73,14 +73,14 @@ body{
   box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
 
-/* Letter title */
+/* Title */
 .title{
   font-family:'Playfair Display',serif;
   color:#6d4c41;
   margin:12px 0 6px;
 }
 
-/* Start button */
+/* Button */
 button{
   margin:12px 0;
   padding:14px 30px;
@@ -98,7 +98,7 @@ button:hover{
   transform:scale(1.08);
 }
 
-/* Letter text */
+/* Letter */
 .letter{
   margin-top:18px;
   text-align:left;
@@ -115,7 +115,27 @@ button:hover{
   to{opacity:1;}
 }
 
-/* Valentine ending */
+/* Couple section */
+.couple{
+  margin-top:28px;
+  text-align:center;
+}
+
+.couple img{
+  width:100%;
+  max-width:360px;
+  border-radius:22px;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+.caption{
+  margin-top:10px;
+  font-family:'Dancing Script',cursive;
+  font-size:18px;
+  color:#5a3e36;
+}
+
+/* Valentine */
 .valentine{
   margin-top:30px;
   font-family:'Playfair Display',serif;
@@ -129,6 +149,8 @@ button:hover{
   50%{transform:scale(1.08);}
 }
 
-.hidden{display:none;}
+.hidden{
+  display:none;
+}
 
 
